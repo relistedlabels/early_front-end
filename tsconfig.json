@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/app/curators/dashboard"  ],
+    "**/*.mts",
+    "src/app/curators/dashboard"
+  ],
   "exclude": ["node_modules"]
 }
