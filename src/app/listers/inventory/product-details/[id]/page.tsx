@@ -45,20 +45,25 @@ export default function Page() {
       </DashboardLayout>
     );
   }
-
-  const media = product?.attachments?.uploads?.map((upload: any) => ({
-    type: upload.type?.startsWith("video") ? "video" : "image",
+const media =
+  product?.attachments?.map((upload: any) => ({
+    type: (upload.type?.startsWith("video") ? "video" : "image") as
+      | "video"
+      | "image",
     src: upload.url,
   })) || [];
+
+
 
   const handleEdit = () => {
     router.push(`/listers/inventory/edit-item/${productId}`);
   };
 
   const handleToggleStatus = () => {
-    const newStatus = product?.isActive === false ? true : false;
-    toggleStatusMutation.mutate(newStatus);
+    const isActive = (product as any)?.isActive !== false;
+    toggleStatusMutation.mutate(!isActive);
   };
+
 
   return (
     <DashboardLayout>
@@ -71,7 +76,7 @@ export default function Page() {
           subtitle={product?.subText}
           onEdit={handleEdit}
           onDisable={handleToggleStatus}
-          isDisabled={product?.isActive === false}
+          isDisabled={(product as any)?.isActive === false}
         />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
@@ -82,13 +87,20 @@ export default function Page() {
           <InventoryItemDetailsHeader
             name={product?.name}
             description={product?.description}
-            dailyPrice={`₦${(product?.dailyPrice || 0).toLocaleString()}`}
+            dailyPrice={`₦${((product as any)?.dailyPrice || 0).toLocaleString()}`}
             itemValue={`₦${(product?.originalValue || 0).toLocaleString()}`}
             size={product?.size}
-            color={product?.color}
+            color={
+              Array.isArray(product?.color)
+                ? product?.color.join(", ")
+                : product?.color
+            }
             condition={product?.condition}
-            status={product?.isActive !== false ? "Active" : "Disabled"}
+            status={
+              (product as any)?.isActive !== false ? "Active" : "Disabled"
+            }
           />
+
           <ProductInfoTabs
             composition={product?.composition}
             measurement={product?.measurement}

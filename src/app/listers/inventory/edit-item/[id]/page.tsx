@@ -25,14 +25,16 @@ export default function EditItemPage() {
 
   useEffect(() => {
     if (product) {
-      const attachments: Attachment[] = product.attachments?.uploads?.map((upload: any, index: number) => ({
-        id: upload.id,
-        url: upload.url,
-        name: upload.name || `Image ${index + 1}`,
-        progress: 100,
-        type: upload.type?.startsWith("video") ? "video" : "image",
-        slotId: index === 0 ? "main" : index === 4 ? "video" : `photo${index}`,
-      })) || [];
+      const attachments: Attachment[] =
+        product.attachments?.map((upload: any, index: number) => ({
+          id: upload.id,
+          url: upload.url,
+          name: upload.name || `Image ${index + 1}`,
+          progress: 100,
+          type: upload.type?.startsWith("video") ? "video" : "image",
+          slotId:
+            index === 0 ? "main" : index === 4 ? "video" : `photo${index}`,
+        })) || [];
 
       mergeData({
         name: product.name || "",
@@ -42,11 +44,12 @@ export default function EditItemPage() {
         composition: product.composition || "",
         measurement: product.measurement || "",
         originalValue: product.originalValue || 0,
-        color: product.color ? product.color.split(", ") : [],
+        color: Array.isArray(product.color) ? product.color : [],
         warning: product.warning || "",
         size: product.size || "",
         careInstruction: product.careInstruction || "",
-        careSteps: product.careSteps ? product.careSteps.split(", ") : [],
+        careSteps: Array.isArray(product.careSteps) ? product.careSteps : [],
+
         stylingTip: product.stylingTip || "",
         attachments,
         categoryId: product.categoryId || "",
@@ -55,6 +58,7 @@ export default function EditItemPage() {
     }
   }, [product, mergeData]);
 
+  
   const path = [
     { label: "Dashboard", href: "/listers/dashboard" },
     { label: "Inventory", href: "/listers/inventory" },
