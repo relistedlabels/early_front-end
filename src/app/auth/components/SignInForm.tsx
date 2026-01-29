@@ -49,7 +49,7 @@ const SignInForm: React.FC = () => {
           onSubmit={(values) => {
             login.mutate(values, {
               onSuccess: (data) => {
-                if (data.profileComplete) {
+                if ((data as any).profileComplete) {
                   router.push("/listers/inventory");
                 } else {
                   router.push("/auth/profile-setup");
