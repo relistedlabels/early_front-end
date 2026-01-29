@@ -58,11 +58,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className=" " suppressHydrationWarning>
-        <QueryProvider>
-          <UploaderProvider>
+        {/* <QueryProvider>
+          <UploaderProvider> */}
             {children}
-          </UploaderProvider>
-        </QueryProvider>
+          {/* </UploaderProvider>
+        </QueryProvider> */}
       </body>
     </html>
   );
