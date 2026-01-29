@@ -147,9 +147,9 @@ const SignInForm: React.FC = () => {
         </Formik>
 
         {/* Social Login */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <SocialSignInOptions />
-        </div>
+        </div> */}
       </div>
     </div>
   );
