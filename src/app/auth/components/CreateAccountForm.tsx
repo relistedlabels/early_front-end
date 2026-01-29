@@ -218,9 +218,9 @@ const CreateAccountForm: React.FC = () => {
           )}
         </Formik>
 
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <SocialSignInOptions />
-        </div>
+        </div> */}
       </div>
     </div>
   );

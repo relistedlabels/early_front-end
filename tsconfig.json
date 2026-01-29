@@ -30,6 +30,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "src/app/curators/dashboard"
-  ],
+, "next.config.js"  ],
   "exclude": ["node_modules"]
 }
